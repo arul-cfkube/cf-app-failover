@@ -8,19 +8,19 @@
 
 ### Deploy the app in Primary Foundation.
 ```
-avannala@avannalaCX6H4 cf-butler % cf a
+avannala@$$$$ cf-butler % cf a
 Getting apps in org cf-butler / space dev as admin...
 
 name               requested state   processes           routes
-cf-butler          started           web:1/1, task:0/0   cf-butler-relaxed-mandrill-td.apps.keep-716898.cf-app.com
-cf-hoover          started           web:1/1, task:0/0   cf-hoover-balanced-shark-kv.apps.keep-716898.cf-app.com
-cf-hoover-ui       started           web:0/1, task:0/0   cf-hoover-ui-insightful-wombat-qv.apps.keep-716898.cf-app.com
-pivotal-mysqlweb   started           web:1/1, task:0/0   pivotal-mysqlweb-rested-bushbuck-hv.apps.keep-716898.cf-app.com
+cf-butler          started           web:1/1, task:0/0   cf-butler-relaxed-mandrill-td.apps.keep-active.cf-app.com
+cf-hoover          started           web:1/1, task:0/0   cf-hoover-balanced-shark-kv.apps.keep-active.cf-app.com
+cf-hoover-ui       started           web:0/1, task:0/0   cf-hoover-ui-insightful-wombat-qv.apps.keep-active.cf-app.com
+pivotal-mysqlweb   started           web:1/1, task:0/0   pivotal-mysqlweb-rested-bushbuck-hv.apps.keep-active.cf-app.com
 ```
 
 ### Create a private domain on primary foundation.
 ```
-avannala@avannalaCX6H4 cf-hoover-ui % cf create-domain cf-butler tas.arullab.com
+avannala@$$$$ cf-hoover-ui % cf create-domain cf-butler tas.arullab.com
 Creating private domain tas.arullab.com for org cf-butler as admin...
 OK
 
@@ -28,18 +28,18 @@ TIP: Domain 'tas.arullab.com' is a private domain. Run 'cf share-private-domain'
 ```
 
 ```
-avannala@avannalaCX6H4 cf-hoover-ui % cf domains
+avannala@$$$$ cf-hoover-ui % cf domains
 Getting domains in org cf-butler as admin...
 
 name                          availability   internal   protocols
 apps.internal                 shared         true       http
-apps.keep-716898.cf-app.com   shared                    http
+apps.keep-active.cf-app.com   shared                    http
 tas.arullab.com               private                   http
 ```
 ### Map a DNS route to primary application
 
 ```
-avannala@avannalaCX6H4 cf-hoover-ui % cf map-route cf-butler tas.arullab.com --hostname primary-butler
+avannala@$$$$ cf-hoover-ui % cf map-route cf-butler tas.arullab.com --hostname primary-butler
 Creating route primary-butler.tas.arullab.com for org cf-butler / space dev as admin...
 OK
 
@@ -49,23 +49,23 @@ OK
 
 
 ```
-avannala@avannalaCX6H4 cf-hoover-ui % cf a
+avannala@$$$$ cf-hoover-ui % cf a
 Getting apps in org cf-butler / space dev as admin...
 
 name               requested state   processes           routes
-cf-butler          started           web:1/1, task:0/0   cf-butler-relaxed-mandrill-td.apps.keep-716898.cf-app.com, primary-butler.tas.arullab.com
-cf-hoover          started           web:1/1, task:0/0   cf-hoover-balanced-shark-kv.apps.keep-716898.cf-app.com
-cf-hoover-ui       started           web:0/1, task:0/0   cf-hoover-ui-insightful-wombat-qv.apps.keep-716898.cf-app.com
-pivotal-mysqlweb   started           web:1/1, task:0/0   pivotal-mysqlweb-rested-bushbuck-hv.apps.keep-716898.cf-app.com
+cf-butler          started           web:1/1, task:0/0   cf-butler-relaxed-mandrill-td.apps.keep-active.cf-app.com, primary-butler.tas.arullab.com
+cf-hoover          started           web:1/1, task:0/0   cf-hoover-balanced-shark-kv.apps.keep-active.cf-app.com
+cf-hoover-ui       started           web:0/1, task:0/0   cf-hoover-ui-insightful-wombat-qv.apps.keep-active.cf-app.com
+pivotal-mysqlweb   started           web:1/1, task:0/0   pivotal-mysqlweb-rested-bushbuck-hv.apps.keep-active.cf-app.com
 ```
 ### Updates you DNS  with CNAME records on primary foundation
 
-Map primary-butler.tas.arullab.com ---> cf-butler-relaxed-mandrill-td.apps.keep-716898.cf-app.com
+Map primary-butler.tas.arullab.com ---> cf-butler-relaxed-mandrill-td.apps.keep-active.cf-app.com
 
 ### Optional: Share the route with secondary application
 #### If deploying the secondary app in same foundation
 ```
-avannala@avannalaCX6H4 cf-butler % cf share-route arullab.com --hostname primary -s test -o cf-butler
+avannala@$$$$ cf-butler % cf share-route arullab.com --hostname primary -s test -o cf-butler
 Sharing route primary.arullab.com to space test as admin
 OK
 ```
@@ -73,16 +73,16 @@ OK
 ### Secondary Foundation
 
 ```
-avannala@avannalaCX6H4 cf-app-failover % cf a
+avannala@$$$$ cf-app-failover % cf a
 Getting apps in org cf-butler / space test as admin...
 
 name               requested state   processes           routes
-cf-butler          started           web:1/1, task:0/0   cf-butler-patient-lynx-vc.apps.keep-716898.cf-app.com, primary.tas.arullab.com
-pivotal-mysqlweb   started           web:1/1, task:0/0   pivotal-mysqlweb-funny-camel-mg.apps.keep-716898.cf-app.com
+cf-butler          started           web:1/1, task:0/0   cf-butler-patient-lynx-vc.apps.keep-active.cf-app.com, primary.tas.arullab.com
+pivotal-mysqlweb   started           web:1/1, task:0/0   pivotal-mysqlweb-funny-camel-mg.apps.keep-active.cf-app.com
 ```
 ### Updates you DNS  with CNAME records on secondary foundation
 
-map primary.tas.arullab.com ---> cf-butler-patient-lynx-vc.apps.keep-716898.cf-app.com
+map primary.tas.arullab.com ---> cf-butler-patient-lynx-vc.apps.keep-active.cf-app.com
 
 
 ### Now you have active-active deployments
