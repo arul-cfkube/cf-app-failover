@@ -77,7 +77,7 @@ avannala@$$$$ cf-app-failover % cf a
 Getting apps in org cf-butler / space test as admin...
 
 name               requested state   processes           routes
-cf-butler          started           web:1/1, task:0/0   cf-butler-patient-lynx-vc.apps.keep-active.cf-app.com, primary.tas.arullab.com
+cf-butler          started           web:1/1, task:0/0   cf-butler-patient-lynx-vc.apps.keep-active.cf-app.com, primary-butler.tas.arullab.com
 pivotal-mysqlweb   started           web:1/1, task:0/0   pivotal-mysqlweb-funny-camel-mg.apps.keep-active.cf-app.com
 ```
 ### Updates you DNS  with CNAME records on secondary foundation
