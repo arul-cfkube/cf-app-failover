@@ -60,7 +60,7 @@ pivotal-mysqlweb   started           web:1/1, task:0/0   pivotal-mysqlweb-rested
 ```
 ### Updates you DNS  with CNAME records on primary foundation
 
-Map primary-butler.tas.arullab.com ---> cf-butler-relaxed-mandrill-td.apps.keep-active.cf-app.com
+#### Map primary-butler.tas.arullab.com ---> cf-butler-relaxed-mandrill-td.apps.keep-active.cf-app.com
 
 ### Optional: Share the route with secondary application
 #### If deploying the secondary app in same foundation
@@ -82,7 +82,7 @@ pivotal-mysqlweb   started           web:1/1, task:0/0   pivotal-mysqlweb-funny-
 ```
 ### Updates you DNS  with CNAME records on secondary foundation
 
-map primary.tas.arullab.com ---> cf-butler-patient-lynx-vc.apps.keep-active.cf-app.com
+#### Map primary.tas.arullab.com ---> cf-butler-patient-lynx-vc.apps.keep-active.cf-app.com
 
 
 ### Now you have active-active deployments
