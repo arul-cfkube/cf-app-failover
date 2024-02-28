@@ -119,4 +119,6 @@ pivotal-mysqlweb   started           web:1/1, task:0/0   pivotal-mysqlweb-funny-
 
 ### Now you have active-active deployments
 
+#### Access the app via https://primary-butler.tas.arullab.com this will route to application url on TAS 
+
 ### Consider Data replication
