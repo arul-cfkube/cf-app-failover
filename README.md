@@ -6,7 +6,7 @@
 <img src="app-failover.png" width="800" alt="Online Boutique" />
 </p>
 
-## Guide to design Active/Active or Active/Passive on Tanzu Application Service (Cloud Foundry)
+## Guide to design Active/Active or Active/Passive deployments on Tanzu Application Service (Cloud Foundry)
 
 ### Deploy the app in Primary Foundation.
 ```
