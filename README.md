@@ -8,7 +8,10 @@
 
 ## Guide to design Active/Active or Active/Passive deployments on Tanzu Application Service (Cloud Foundry)
 
-### Deploy the app in Primary Foundation.
+#### This guide assumes your are deploying both primary and secondary apps in same foundation.
+
+
+### Deploy the app in Primary Space.
 ```
 avannala@$$$$ cf-butler % cf a
 Getting apps in org cf-butler / space dev as admin...
@@ -20,7 +23,7 @@ cf-hoover-ui       started           web:0/1, task:0/0   cf-hoover-ui-insightful
 pivotal-mysqlweb   started           web:1/1, task:0/0   pivotal-mysqlweb-rested-bushbuck-hv.apps.keep-active.cf-app.com
 ```
 
-### Create a private domain on primary foundation.
+### Create a private domain.
 ```
 avannala@$$$$ cf-hoover-ui % cf create-domain cf-butler tas.arullab.com
 Creating private domain tas.arullab.com for org cf-butler as admin...
@@ -68,15 +71,15 @@ pivotal-mysqlweb   started           web:1/1, task:0/0   pivotal-mysqlweb-rested
 <img src="route53.png" width="800" alt="Online Boutique" />
 </p>
 
-### Optional: Share the route with secondary application
-#### If deploying the secondary app in same foundation
+###  Share the route with secondary application
+#### Deploying the secondary app in same foundation to different space
 ```
 avannala@$$$$ cf-butler % cf share-route arullab.com --hostname primary -s test -o cf-butler
 Sharing route primary.arullab.com to space test as admin
 OK
 ```
 
-### Secondary Foundation
+### Secondary Space
 
 ```
 avannala@$$$$ cf-app-failover % cf a
@@ -85,15 +88,6 @@ Getting apps in org cf-butler / space test as admin...
 name               requested state   processes           routes
 cf-butler          started           web:1/1, task:0/0   cf-butler-patient-lynx-vc.apps.keep-active.cf-app.com
 pivotal-mysqlweb   started           web:1/1, task:0/0   pivotal-mysqlweb-funny-camel-mg.apps.keep-active.cf-app.com
-```
-
-### Create a private domain on secondary foundation.
-```
-avannala@$$$$ cf-hoover-ui % cf create-domain cf-butler tas.arullab.com
-Creating private domain tas.arullab.com for org cf-butler as admin...
-OK
-
-TIP: Domain 'tas.arullab.com' is a private domain. Run 'cf share-private-domain' to share this domain with a different org.
 ```
 
 ### Map a DNS route to secondary application
@@ -107,7 +101,6 @@ Mapping route primary-butler.tas.arullab.com to app cf-butler in org cf-butler /
 OK
 ```
 
-
 ```
 avannala@$$$$ cf-app-failover % cf a
 Getting apps in org cf-butler / space test as admin...
@@ -119,6 +112,6 @@ pivotal-mysqlweb   started           web:1/1, task:0/0   pivotal-mysqlweb-funny-
 
 ### Now you have active-active deployments
 
-#### Access the app via https://primary-butler.tas.arullab.com this will route to application url on TAS 
+#### Access the app via https://primary-butler.tas.arullab.com this will route to application url on TAS
 
 ### Consider Data replication
