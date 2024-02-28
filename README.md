@@ -8,7 +8,7 @@
 
 ## Guide to design Active/Active or Active/Passive deployments on Tanzu Application Service (Cloud Foundry)
 
-#### This guide assumes your are deploying both primary and secondary apps in same foundation.
+#### This guide assumes your are deploying both primary and secondary apps in same foundation. The apps can be deployed to seperate org or spaces
 
 
 ### Deploy the app in Primary Space.
